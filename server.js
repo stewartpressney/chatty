@@ -1,19 +1,34 @@
-var webpack = require('webpack');
-var WebpackDevServer = require('webpack-dev-server');
-var config = require('./webpack.config');
+    const express = require('express');
+    const http = require('http');
+    const WebSocket = require('ws');
 
-new WebpackDevServer(webpack(config), {
-    publicPath: config.output.publicPath,
-    watchOptions: {
-      aggregateTimeout: 300,
-      poll: 1000,
-      ignored: /node_modules/
-    }
-  })
-  .listen(3000, '0.0.0.0', function (err, result) {
-    if (err) {
-      console.log(err);
-    }
+    const app = express();
 
-    console.log('Running at http://0.0.0.0:3000');
-  });
+    const server = http.createServer(app);
+    const wss = new WebSocket.Server({ server });
+
+    wss.on('connection', (ws, req) => {
+
+      ws.on('message', (message) => {
+        console.log('server receives message', message)
+        wss.clients.forEach(function each(client) {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(message);
+          }
+        });
+      });
+
+      wss.broadcast = function broadcast(data) {
+        wss.clients.forEach(function each(client) {
+          if (client.readyState === WebSocket.OPEN) {
+            client.send(data);
+          }
+        });
+      };
+    wss.broadcast(JSON.stringify({type: 'userConnected', onlineNumber:wss.clients.size}))
+
+    });
+
+    server.listen(8080, () => {
+      console.log('Listening on %d', server.address().port);
+    });

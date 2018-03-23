@@ -1,3 +1,112 @@
 h1 {
   color: tomato;
 }
+
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,700");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css");
+
+    body {
+      background: white;
+      color: black;
+      font-family: 'Antic', sans-serif;
+      font-size: 14px;
+      margin: 70px 0;
+    }
+
+    .chatbar {
+      background: #2B3338;
+      border-top: 1px solid black;
+      bottom: 0;
+      display: flex;
+      left: 0;
+      padding: 5px;
+      position: fixed;
+      right: 0;
+    }
+
+    .chatbar-message,
+    .chatbar-username {
+      border: 1px solid black;
+      display: block;
+      height: 40px;
+      line-height: 40px;
+      margin: 5px;
+      padding: 0 9px;
+    }
+
+    .chatbar-message {
+      flex: 8;
+      border-radius: 5px;
+    }
+
+    .chatbar-username {
+      flex: 2;
+      border-radius: 5px;
+    }
+
+    .message {
+      display: block;
+      padding: 20px;
+      box-shadow: 1px 1px 1px grey;
+
+
+    }
+
+    .message.system {
+      font-style: italic;
+      padding: 5px 20px;
+      border: 1px solid black;
+    }
+
+    .message-content,
+    .message-username {
+      overflow: hidden;
+      margin: 5px;
+      padding: 0 10px;
+    }
+
+    .message-content {
+      flex: 8;
+    }
+
+    .message-username {
+      flex: 2;
+      font-weight: 700;
+    }
+
+    .navbar {
+      background: #2B3338;
+      border-bottom: 1px solid black;
+      height: 60px;
+      left: 0;
+      padding: 0 10px;
+      position: fixed;
+      right: 0;
+      top: 0;
+    }
+
+    .navbar-brand {
+      color: white;
+      font-family: 'Antic', sans-serif;
+      display: block;
+      float: left;
+      font-weight: 200;
+      font-size: 28px;
+      height: 60px;
+      line-height: 60px;
+      padding: 0 10px;
+      text-decoration: none;
+    }
+
+    .users-counter {
+      color: white;
+      display: block;
+      font-family: 'Antic', sans-serif;
+      float: right;
+      font-weight: 100;
+      font-size: 18px;
+      height: 60px;
+      line-height: 60px;
+      padding: 0 10px;
+      text-decoration: none;
+    }
